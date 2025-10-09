@@ -6,14 +6,11 @@
   "authors": [
     "Polyfrost"
   ],
-  "contributors": [
-    "awruff"
-  ],
   "environment": "client",
   "entrypoints": {
     "main": [
       {
-        "value": "org.polyfrost.chattweaks.ChatTweaks"
+        "value": "org.polyfrost.shaketweaks.ShakeTweaks"
       }
     ]
   },
