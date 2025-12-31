@@ -1,18 +1,7 @@
 package org.polyfrost.chattweaks;
 
-//#if FABRIC
-//$$ import net.fabricmc.api.ModInitializer;
-//#elseif FORGE
-
 import dev.deftu.omnicore.api.loader.ModInfo;
 import dev.deftu.omnicore.api.loader.OmniLoader;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ModContainer;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-// HERE
-//#endif
-
-import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import org.apache.commons.lang3.StringUtils;
 import org.polyfrost.chattweaks.config.ChatTweaksConfig;
 import org.polyfrost.chattweaks.features.CompactChatHandler;
@@ -23,7 +12,13 @@ import org.polyfrost.oneconfig.api.event.v1.events.ResourceFinishedLoading;
 import org.polyfrost.oneconfig.api.event.v1.invoke.impl.Subscribe;
 import org.polyfrost.oneconfig.api.ui.v1.Notifications;
 
-import java.util.List;
+//#if FABRIC
+//$$ import net.fabricmc.api.ModInitializer;
+//#elseif FORGE
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+//#endif
+
 import java.util.Set;
 
 //#if FORGE-LIKE

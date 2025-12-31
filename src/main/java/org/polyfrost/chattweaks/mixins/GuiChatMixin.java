@@ -24,7 +24,7 @@ public class GuiChatMixin {
     void chattweaks$keytypes(char typedChar, int keyCode, CallbackInfo ci) {
         if (GuiScreen.isShiftKeyDown() && ChatTweaks.config.shiftChat) {
             ci.cancel();
-            inputField.setText("");
+            this.inputField.setText("");
         }
     }
 
