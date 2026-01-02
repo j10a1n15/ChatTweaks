@@ -1,5 +1,8 @@
 package org.polyfrost.chattweaks.features;
 
+// Hypixel doenst even support links in chat anymore so i dont feel like actually porting this
+//#if MC <= 1.12.2
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
@@ -26,8 +29,10 @@ import java.net.URL;
 import java.util.concurrent.CompletableFuture;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+//#endif
 
 public class ImagePreview {
+    //#if MC <= 1.12.2
     private final Pattern OGP_IMAGE_REGEX = Pattern.compile("<meta property=\"(?:og:image|twitter:image)\" content=\"(?<url>.+?)\".*?/?>");
     private final Pattern IMG_TAG_REGEX = Pattern.compile("<img.*?src=\"(?<url>.+?)\".*?>");
 
@@ -191,4 +196,5 @@ public class ImagePreview {
             if (connection != null) connection.disconnect();
         }
     }
+    //#endif
 }

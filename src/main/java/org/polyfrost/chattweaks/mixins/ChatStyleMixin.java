@@ -38,34 +38,32 @@ abstract class ChatStyleMixin {
 
         ClickEvent.Action action = chatClickEvent.getAction();
 
-        if (!(action.equals(ClickEvent.Action.OPEN_FILE) || action.equals(ClickEvent.Action.OPEN_URL) || action.equals(ClickEvent.Action.RUN_COMMAND))) {
-            return hoverEvent;
-        }
-
-        String actionMessage = action == ClickEvent.Action.RUN_COMMAND ? "Runs " : "Opens ";
-        String msg = "§7" + actionMessage + "§e" + chatClickEvent.getValue() + " §7on click.";
-        if (hoverEvent == null) {
-            ChatComponentText textComponent = new ChatComponentText(msg);
-            this.patcher$appendTimestamp(textComponent);
-            return new HoverEvent(HoverEvent.Action.SHOW_TEXT, textComponent);
-        }
-
-        if (hoverEvent.getAction().equals(HoverEvent.Action.SHOW_TEXT)) {
-            ChatComponentText textComponent = new ChatComponentText(msg);
-            IChatComponent value = hoverEvent.getValue();
-
-            if (value.getSiblings().contains(textComponent) || value.getFormattedText().contains(msg)) {
-                return hoverEvent;
+        if (action.equals(ClickEvent.Action.OPEN_FILE) || action.equals(ClickEvent.Action.OPEN_URL) || action.equals(ClickEvent.Action.RUN_COMMAND)) {
+            String actionMessage = action == ClickEvent.Action.RUN_COMMAND ? "Runs " : "Opens ";
+            String msg = "§7" + actionMessage + "§e" + chatClickEvent.getValue() + " §7on click.";
+            if (hoverEvent == null) {
+                ChatComponentText textComponent = new ChatComponentText(msg);
+                this.patcher$appendTimestamp(textComponent);
+                return new HoverEvent(HoverEvent.Action.SHOW_TEXT, textComponent);
             }
 
-            IChatComponent componentCopy = value.createCopy();
-            componentCopy.appendText("\n");
-            componentCopy.appendText(msg);
-            this.patcher$appendTimestamp(componentCopy);
+            if (hoverEvent.getAction().equals(HoverEvent.Action.SHOW_TEXT)) {
+                ChatComponentText textComponent = new ChatComponentText(msg);
+                IChatComponent value = hoverEvent.getValue();
 
-            return new HoverEvent(HoverEvent.Action.SHOW_TEXT, componentCopy);
+                if (value.getSiblings().contains(textComponent) || value.getFormattedText().contains(msg)) {
+                    return hoverEvent;
+                }
+
+                IChatComponent componentCopy = value.createCopy();
+                componentCopy.appendText("\n");
+                componentCopy.appendText(msg);
+                this.patcher$appendTimestamp(componentCopy);
+
+                return new HoverEvent(HoverEvent.Action.SHOW_TEXT, componentCopy);
+            }
+
         }
-
         return hoverEvent;
     }
 
